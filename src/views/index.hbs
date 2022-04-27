@@ -1,0 +1,64 @@
+{{!-- Lista de contactos --}}
+<div class="wrapper">
+  <div class="list-contact">
+    {{#if contacts}}
+      <ul>
+        {{#each contacts}}
+          <li>
+            <h3>{{firstname}} {{lastname}}</h3>
+            <p>{{email}}</p>
+            <p>{{phone}}</p>
+            <div>
+              <button><a href="/edit-contact/{{id}}">Edit</a></button>
+              <button><a href="/delete-contact/{{id}}">Delete</a></button>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  {{!-- Formulario --}}
+  <div class="container-form">
+    <form class="form" action="{{#unless userDataToEdit.docData.id}}/add-contact{{else}}/update-contact/{{userDataToEdit.docData.id}}{{/unless}}" method="post">
+      <div>
+        <label for="firstname">First Name</label>
+        <input
+          id="firstname"
+          type="text"
+          name="firstname"
+          placeholder="First name"
+          value="{{userDataToEdit.docData.firstname}}">
+      </div>
+      <div>
+        <label for="lastname">Last Name</label>
+        <input
+          id="lastname"
+          type="text"
+          name="lastname"
+          placeholder="Last name"
+          value="{{userDataToEdit.docData.lastname}}">
+      </div>
+      <div>
+        <label for="email"></label>
+        <input
+          id="email"
+          type="text"
+          name="email"
+          placeholder="Email"
+          value="{{userDataToEdit.docData.email}}">
+      </div>
+      <div>
+        <label for="phone">Phone</label>
+        <input
+          id="phone"
+          type="text"
+          name="phone"
+          placeholder="Phone"
+          value="{{userDataToEdit.docData.phone}}">
+      </div>
+      <div>
+        <button>Save</button>
+      </div>
+    </form>
+  </div>
+</div>
